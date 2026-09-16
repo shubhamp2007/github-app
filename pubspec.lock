@@ -70,6 +70,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  flutter_octicons:
+    dependency: "direct main"
+    description:
+      name: flutter_octicons
+      sha256: "90e4149f2d1fa2a3006963e8e193782f228e05f8ed01d251719aa22074899351"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.81.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
