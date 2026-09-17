@@ -1,35 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_octicons/flutter_octicons.dart';
+import 'package:github_app/pages/copilot_page.dart';
+import 'package:github_app/pages/explore_page.dart';
+import 'package:github_app/pages/home_page.dart';
+import 'package:github_app/pages/inbox_page.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
+  runApp(Main());
+}
+
+class Main extends StatefulWidget {
+  const Main({super.key});
+
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  int _selectedIndex = 0;
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List _pages = [HomePage(), InboxPage(), ExplorePage(), CopilotPage()];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text('Home')),
-        body: const Center(child: Text('Github App')),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(OctIcons.home_16),
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _navigateBottomBar,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(OctIcons.home_24),
+              selectedIcon: Icon(OctIcons.home_fill_24, color: Colors.blue),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(OctIcons.inbox_16),
+            NavigationDestination(
+              icon: Icon(OctIcons.inbox_24),
+              selectedIcon: Icon(OctIcons.inbox_fill_24, color: Colors.blue),
               label: 'Inbox',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(OctIcons.telescope_16),
+            NavigationDestination(
+              icon: Icon(OctIcons.telescope_24),
+              selectedIcon: Icon(
+                OctIcons.telescope_fill_24,
+                color: Colors.blue,
+              ),
               label: 'Explore',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(OctIcons.copilot_16),
+            NavigationDestination(
+              icon: Icon(OctIcons.copilot_24),
+              selectedIcon: Icon(OctIcons.copilot_24, color: Colors.blue),
               label: 'Copilot',
             ),
           ],
         ),
       ),
-    ),
-  );
+    );
+  }
 }
