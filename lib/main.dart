@@ -110,35 +110,40 @@ class _MainState extends State<Main> {
       ),
       home: Scaffold(
         body: _pages[_selectedIndex],
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _selectedIndex,
-          onDestinationSelected: _navigateBottomBar,
-          indicatorColor: Colors.blue.shade100,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(OctIcons.home_24),
-              selectedIcon: Icon(OctIcons.home_fill_24, color: Colors.blue),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(OctIcons.inbox_24),
-              selectedIcon: Icon(OctIcons.inbox_fill_24, color: Colors.blue),
-              label: 'Inbox',
-            ),
-            NavigationDestination(
-              icon: Icon(OctIcons.telescope_24),
-              selectedIcon: Icon(
-                OctIcons.telescope_fill_24,
-                color: Colors.blue,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            border: Border(top: BorderSide(color: border, width: 1)),
+          ),
+          child: NavigationBar(
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: _navigateBottomBar,
+            indicatorColor: Color(0xFF1A2B3F),
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(OctIcons.home_24),
+                selectedIcon: Icon(OctIcons.home_fill_24, color: Colors.blue),
+                label: 'Home',
               ),
-              label: 'Explore',
-            ),
-            NavigationDestination(
-              icon: Icon(OctIcons.copilot_24),
-              selectedIcon: Icon(OctIcons.copilot_24, color: Colors.blue),
-              label: 'Copilot',
-            ),
-          ],
+              NavigationDestination(
+                icon: Icon(OctIcons.inbox_24),
+                selectedIcon: Icon(OctIcons.inbox_fill_24, color: Colors.blue),
+                label: 'Inbox',
+              ),
+              NavigationDestination(
+                icon: Icon(OctIcons.telescope_24),
+                selectedIcon: Icon(
+                  OctIcons.telescope_fill_24,
+                  color: Colors.blue,
+                ),
+                label: 'Explore',
+              ),
+              NavigationDestination(
+                icon: Icon(OctIcons.copilot_24),
+                selectedIcon: Icon(OctIcons.copilot_24, color: Colors.blue),
+                label: 'Copilot',
+              ),
+            ],
+          ),
         ),
       ),
     );
