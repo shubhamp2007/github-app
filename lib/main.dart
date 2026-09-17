@@ -31,11 +31,11 @@ class _MainState extends State<Main> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Home')),
         body: _pages[_selectedIndex],
         bottomNavigationBar: NavigationBar(
           selectedIndex: _selectedIndex,
           onDestinationSelected: _navigateBottomBar,
+          indicatorColor: Colors.blue.shade100,
           destinations: const [
             NavigationDestination(
               icon: Icon(OctIcons.home_24),
