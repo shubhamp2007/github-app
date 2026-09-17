@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_octicons/flutter_octicons.dart';
+import 'package:github_app/pages/issues_page.dart';
+import 'package:github_app/pages/pull_requests_page.dart';
+import 'package:github_app/pages/search_page.dart';
+import 'package:github_app/pages/top_repositories_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,7 +23,10 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             constraints: const BoxConstraints(),
             icon: Icon(OctIcons.search_16, color: colors.primary, size: 16),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const SearchPage()));
+            },
           ),
           IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -73,11 +80,20 @@ class HomePage extends StatelessWidget {
             icon: OctIcons.issue_opened_16,
             bgColor: Colors.green,
             label: 'Issues',
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const IssuesPage()));
+            },
           ),
           _MenuTile(
             icon: OctIcons.git_pull_request_16,
             bgColor: Colors.blue,
             label: 'Pull Requests',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const PullRequestsPage()),
+              );
+            },
           ),
           _MenuTile(
             icon: OctIcons.comment_discussion_16,
@@ -93,6 +109,11 @@ class HomePage extends StatelessWidget {
             icon: OctIcons.repo_16,
             bgColor: Colors.blueGrey,
             label: 'Top Repositories',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const TopRepositoriesPage()),
+              );
+            },
           ),
           _MenuTile(
             icon: OctIcons.organization_16,
@@ -118,11 +139,13 @@ class _MenuTile extends StatelessWidget {
   final IconData icon;
   final Color bgColor;
   final String label;
+  final VoidCallback? onTap;
 
   const _MenuTile({
     required this.icon,
     required this.bgColor,
     required this.label,
+    this.onTap,
   });
 
   @override
@@ -139,7 +162,7 @@ class _MenuTile extends StatelessWidget {
         child: Icon(icon, color: Colors.white, size: 16),
       ),
       title: Text(label, style: const TextStyle(fontSize: 16)),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
