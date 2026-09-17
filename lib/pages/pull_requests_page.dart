@@ -59,6 +59,18 @@ class PullRequestsPage extends StatelessWidget {
               ],
             ),
           ),
+          _PullRequestCard(
+            author: 'MonuChaudhary14 / docusaurus-2026 #24',
+            title: 'Created shubham.md and updated navbar',
+            icon: OctIcons.git_pull_request_16,
+            iconColor: Colors.green,
+            actor: IconButton(
+              onPressed: () {},
+              padding: const EdgeInsets.all(0),
+              icon: Icon(OctIcons.comment_16, size: 12),
+            ),
+            timeAgo: '16d',
+          ),
         ],
       ),
     );
@@ -97,6 +109,82 @@ class _Chip extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           const Icon(OctIcons.chevron_down_16, size: 14, color: Colors.white),
+        ],
+      ),
+    );
+  }
+}
+
+class _PullRequestCard extends StatelessWidget {
+  final String author;
+  final String title;
+  final IconData icon;
+  final Color iconColor;
+  final Widget actor;
+  final String timeAgo;
+
+  const _PullRequestCard({
+    required this.author,
+    required this.title,
+    required this.icon,
+    required this.iconColor,
+    required this.actor,
+    required this.timeAgo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 2, right: 12),
+            child: Icon(icon, size: 20, color: iconColor),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        author,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: colorScheme.onSurface.withValues(alpha: 0.7),
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Text(
+                      timeAgo,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: colorScheme.onSurface.withValues(alpha: 0.5),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 15, color: colorScheme.onSurface),
+                ),
+                const SizedBox(height: 2),
+                actor,
+              ],
+            ),
+          ),
         ],
       ),
     );
